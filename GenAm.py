@@ -36,8 +36,8 @@ def setup():
         limits.append([-10, 10])
 
     meshes = meshgrid(arange(*limits[0], 0.1), arange(*limits[1], 0.1))
-    independents = list(input('Input the independent variables as \
-                               x, y, a, b, c ... : ').replace(', ', ''))
+    variables = input('Input the independent variables as x, y, a, b, c ... : ')
+    independents = list(variables.replace(', ', ''))
     funcstring = input('Input the function in terms of the previous variables: ')
     return independents, variable_zlims, limits, funcstring, meshes
 
@@ -81,7 +81,7 @@ def animfunc(frame: int, max: int, sf: int | float, independents: list[str],
     z = function(funcstring, *meshes, higher)
     ax.plot_surface(*meshes, z, color='blue')
     if show_detailed:
-        print(f'Frame: {frame}\n\t{str(higher[1:-1]).replace(":", " = ")}')
+        print(f'Frame: {frame}\n\t{str(higher)[1:-1].replace(":", " = ")}')
 
 
 def animate(independents: list[str], variable_zlims: bool, limits: 
